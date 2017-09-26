@@ -164,14 +164,26 @@ function calcApp(){
              var addImgNodeButton = document.querySelector("#add-img-node-button");
              var removeNodeButton = document.querySelector("#remove-node-button");
              var container = document.querySelector("#node-container");
-               
+             
+             var remove11 = function(e){
+            	 container.removeChild(e.target);
+             };
+             
+             var idx = 0;
+             
+             
+             
              addTextNodeButton.onclick = function(){
+            	 var span = document.createElement("span");
             //1 : textnode생성
-            var txt = document.createTextNode("안녕하세요");
+            var txt = document.createTextNode("안녕하세요"+idx++);
          //2 : container(부모)를 얻기
          //   var div = document.getElementById("node-container")
             //3 : 부모에 자식을 추가
-            container.appendChild(txt);
+            span.appendChild(txt);
+         	container.appendChild(span);
+         	
+         	span.onclick = remove11;
          
                };
                
@@ -190,13 +202,13 @@ function calcApp(){
      
        /*   -- 노드 삭제 예제--------------------------------------------- */
          
-             removeNodeButton.onclick = function(){
+             removeNodeButton.onclick = function(e){
             
              //1. 내정된 노드를 지우기 - 예 : 막내지우기
        //      container.parentNode
-         container.removeChild(container.lastChild);
+         //container.removeChild(container.lastChild);
              //2. 선택된 노드를 지우기
-          
+          alert(e.target);
            
                };
        };

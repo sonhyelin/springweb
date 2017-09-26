@@ -1,5 +1,7 @@
 package com.newlecture.webapp.controller;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +23,14 @@ public class CustomerController {
 	@RequestMapping("notice")
 	@ResponseBody
 	public String notice(@RequestParam(value="p", defaultValue="1")Integer page,
+						@RequestParam(value="f", defaultValue="title")String field,
 						@RequestParam(value="q", defaultValue="")String query) {
 		
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		List<NoticeView> list = noticeDao.getList(page, field, query);
+		
 		String output = String.format("p:%s, q:%s", page, query);
+		output += String.format("title:%s\n", list.get(0).getTitle());
 		
 		return output;
 		
