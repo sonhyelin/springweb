@@ -33,8 +33,8 @@ public class CustomerController {
 		
 		model.addAttribute("list", list);
 		
-		return "customer/notice";
-		
+		//return "customer/notice";
+		return "customer.notice";
 	}
 	@RequestMapping("notice/{id}")
 	public String noticeDetail(@PathVariable("id") String aaid) {
@@ -44,7 +44,8 @@ public class CustomerController {
 		
 		
 		
-		return aaid+"번째 공지사항:"+noticeView.getTitle();
+		//return aaid+"번째 공지사항:"+noticeView.getTitle();
+		return "customer.notice-detail";
 		
 	}
 }
