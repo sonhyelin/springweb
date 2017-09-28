@@ -21,5 +21,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<bean class="com.newlecture.webapp.dao.mybatis.MyBatisNoticeDao"/>
+	
 	<context:annotation-config />
 </beans>

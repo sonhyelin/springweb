@@ -1,8 +1,8 @@
 package com.newlecture.webapp.controller;
 
+
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import com.newlecture.webapp.entity.NoticeView;
 public class CustomerController {
 	
 	@Autowired
-	private SqlSessionTemplate sqlSession;
+	private NoticeDao noticeDao;
 	
 	@RequestMapping("notice")
 	public String notice(@RequestParam(value="p", defaultValue="1")Integer page,
@@ -25,27 +25,17 @@ public class CustomerController {
 						@RequestParam(value="q", defaultValue="")String query,
 						Model model) {
 		
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		List<NoticeView> list = noticeDao.getList(page, field, query);
 		
-		String output = String.format("p:%s, q:%s", page, query);
-		output += String.format("title:%s\n", list.get(0).getTitle());
-		
 		model.addAttribute("list", list);
-		
 		//return "customer/notice";
-		return "customer.notice";
+		return "customer.notice.list";
 	}
 	@RequestMapping("notice/{id}")
 	public String noticeDetail(@PathVariable("id") String aaid) {
 		
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
-		NoticeView noticeView = noticeDao.get(aaid);
-		
-		
-		
 		//return aaid+"번째 공지사항:"+noticeView.getTitle();
-		return "customer.notice-detail";
+		return "customer.notice.detail";
 		
 	}
 }

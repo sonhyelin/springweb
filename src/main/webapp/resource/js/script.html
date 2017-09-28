@@ -223,28 +223,97 @@ function calcApp(){
       };
    
    }; */
-   /* ------------------노드바꾸기---------------------------- */
-	window.onload = function(){
-	 var swapNodeButton = document.querySelector("#swap-node-button");
-	 var container = document.querySelector("#node-swap-container")
-	   swapNodeButton.onclick = function(){
-		 //var node1 = container.querySelect("img:first-child")
-		var nodes = container.getElementsByTagName("img");	 
-		 var node1 = nodes[0];
-		 var node2 = nodes[1];
-				 var node3 = nodes[2];
-				 var nodeNext = node1.nextElementSibling;
-					 var oldNode = container.replaceChild(node1,node3);
-					 var insertNode = container.insertBefore(node3,node2);
-	   };
-   };
    
+   
+ //---- 노드 바꾸기 예제-------------------------------------------------------------------------------
+
+   window.addEventListener("load", function(e) {
+      
+   
+
+      var swapNodeButton = document.querySelector("#swap-node-button");
+      var container = document.querySelector("#node-swap-container");
+
+
+      swapNodeButton.onclick = function() {
+       /* var node1 = container.querySelector("img:first-child");
+         var node3 = container.querySelector("img:last-child");
+           */
+         var nodes = container.getElementsByTagName("img");
+         var node1 = nodes[0];
+         var node3 = nodes[2];
+         var nodeNext = node1.nextElementSibling;
+          
+         var oldNode = container.replaceChild(node1,node3);
+         //var newNode = container.insertBefore(node3, nodes[0]);
+         var newNode = container.insertBefore(node3, nodeNext);
+         
+         
+         
+         
+      };
+
+   });
+   
+   
+   
+   //---- 노드 바꾸기 예제 2-------------------------------------------------------------------------------
+
+   window.onload = function() {
+
+      var moveUpButton = document.querySelector("#move-up-button");
+      var container = document.querySelector("#move-up-container");
+      /* var trs =container.querySelectorAll("tbody tr");
+      
+      for(var i=0;i<trs.length;i++){
+         trs[i].onclick = function(e){
+            e.target.style.background = "pink";
+         }
+      }
+       */
+      
+      var tbody =container.querySelector("tbody");
+          tbody.onclick = function(e){
+            /* e.target.style.background = "blue"; */
+            alert("target: "+e.target.nodeName+", current: "+ e.currentTarget);
+            e.target.parentNode.style.background="pink";
+            
+         }
+	
+   }
+	
 </script>
 
 </head>
 
 
 <body>
+<!-- ------------------------------노드바꾸기 예제2------------------------------------ -->
+  <input id="move-up-button" type="button" value="위로 옮기기"/>
+	<div id="move-up-container">
+		<table border="1">
+			<thead>
+				<tr>
+					<td>코드</td>
+					<td>제목</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>코드</td>
+					<td>제목</td>
+				</tr>
+				<tr>
+					<td>코드</td>
+					<td>제목</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<hr />
+
+
+<!-- ------------------------------노드바꾸기 예제------------------------------------ -->
   <input id="swap-node-button" type="button" value="노드 바꾸기"/>
 	<div id = "node-swap-container">
      <img src="../images/라이언.gif">
