@@ -10,4 +10,6 @@ public interface NoticeDao {
 	int getCount();
 	NoticeView get(String id);
 	int update(String id, String title, String content);
+	NoticeView getPrev(String id);
+	NoticeView getNext(String id);
 }

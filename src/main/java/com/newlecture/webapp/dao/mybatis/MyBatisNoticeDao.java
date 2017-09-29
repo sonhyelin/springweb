@@ -46,4 +46,18 @@ public class MyBatisNoticeDao implements NoticeDao {
 		return 0;
 	}
 
+	@Override
+	public NoticeView getPrev(String id) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		NoticeView result = noticeDao.getPrev(id);
+		return result;
+	}
+
+	@Override
+	public NoticeView getNext(String id) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		NoticeView result = noticeDao.getNext(id);
+		return result;
+	}
+
 }
