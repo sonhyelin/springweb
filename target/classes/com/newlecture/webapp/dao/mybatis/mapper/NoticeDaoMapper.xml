@@ -25,6 +25,9 @@
 			order by regDate desc
 			limit 1
 	</select>
+	<select id = "getNextId" resultType="String">
+			select IFNULL(max(cast(id as unsigned)), 0)+1 from Notice
+	</select>
 	
 	<insert id="insert" parameterType="com.newlecture.webapp.entity.Notice">
 	<selectKey order="BEFORE" keyProperty="id" resultType="String">
