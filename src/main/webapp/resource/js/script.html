@@ -351,11 +351,29 @@ function calcApp(){
 	      var tbody = document.querySelector("#ex2-clone tbody");
 	      var template = document.querySelector("#ex2-clone template");
 	      
+	      var data = [{id:"1", title:"4", writerId:"7"},{id:"2", title:"5", writerId:"8"},{id:"3", title:"6", writerId:"9"}];
+	      
+	      
+	      ajaxButton.onclick = function(e){
+	    	  
+	      };
+	      
 	      cloneButton.onclick = function(e){
-	           if('content' in 0.
-	        		   ){
-	        	   alert('aa');
-	           }
+	      
+	           if('content' in template){
+	        	   
+	        	   for(var i=0; i<data.length; i++)
+	        		   {
+	        	   var clone = document.importNode(template.content, true);
+	        	   
+					var tds = clone.querySelectorAll("td")
+					tds[0].appendChild(document.createTextNode (data[i].id));
+					tds[1].textContent = data[i].title;
+					tds[2].textContent =  data[i].writerId;
+	        		   }
+					tbody.appendChild(clone);
+	        		   
+	      }
 	      }
 	   });
 </script>
@@ -367,6 +385,7 @@ function calcApp(){
 	<div id="ex2-clone">
 		<div>
 			<input type="button" value="복제" />
+			<input type="button" value="ajax요청" />
 		</div>
 		<div id="clone-container">
 			<table border="1">
@@ -382,9 +401,9 @@ function calcApp(){
 			</table>
 			<template>
 					<tr>
-						<td><input name="id" type="radio" value="1" /></td>
-						<td>1</td>
-						<td>제목1~~~~~~~~~~~~~~</td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 			</template>
 		</div>

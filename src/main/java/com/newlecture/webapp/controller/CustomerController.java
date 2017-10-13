@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.newlecture.webapp.dao.NoticeDao;
 import com.newlecture.webapp.entity.NoticeView;
 
@@ -32,7 +33,9 @@ public class CustomerController {
          Model model) {
       
       
-      model.addAttribute("list", noticeDao.getList(page, field, query));
+      List<NoticeView> list = noticeDao.getList(page, field, query);
+      
+      model.addAttribute("list", list);
       
       /*String output = String.format("p:%s, q:%s", page, query);
       output += String.format("title : %s\n", list.get(0).getTitle());
@@ -41,6 +44,34 @@ public class CustomerController {
       return "customer.notice.list";
    }
    
+   @RequestMapping("notice-ajax")
+   @ResponseBody
+   public String noticeAjax(@RequestParam(value="p", defaultValue="1") Integer page, 
+         @RequestParam(value="f", defaultValue="title") String field,
+         @RequestParam(value="q", defaultValue="") String query,
+         Model model) {
+      
+      
+	  List<NoticeView> list = noticeDao.getList(page, field, query);
+      
+	  String json = "";
+	  
+	  Gson gson = new Gson();
+	  json = gson.toJson(list);
+	  
+	 /* StringBuilder builder = new StringBuilder();
+	  builder.append("[");
+	  builder.append("{}");
+	  builder.append("{}");
+	  builder.append("]");
+	  
+	  json = builder.toString();*/
+      /*String output = String.format("p:%s, q:%s", page, query);
+      output += String.format("title : %s\n", list.get(0).getTitle());
+      */
+      //return "customer/notice";
+      return json;
+   }
    /*@RequestMapping("notice/{id}")
    @ResponseBody
    public String noticeDetail(@PathVariable String id) {
