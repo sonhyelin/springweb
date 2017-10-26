@@ -1,5 +1,7 @@
 package com.newlecture.webapp.entity;
 
+import java.util.Date;
+
 public class Member {
 	private String id;
 	private String pwd;
@@ -9,6 +11,8 @@ public class Member {
 	private String birthday;
 	private String phone;
 	private String email;
+	private Date regDate;
+	private int point;
 	
 	public Member() {
 		
@@ -92,6 +96,28 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+
+	public int getPoint() {
+		return point;
+	}
+
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	
 	
 	
 }
