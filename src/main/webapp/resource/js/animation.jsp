@@ -59,7 +59,7 @@
 		 //CSS3에 추가된 변화속성
 		 //item.style.width?
 	     //item.style.left?
-	     item.style.transform(a, b, c, d, e, f);
+	    // item.style.transform(a, b, c, d, e, f);
 	      
 		 
 	   };
@@ -82,24 +82,55 @@
 				}); */
 				
 				//2. 기간(duration)을 두고 점진적으로  변화를 주는 방법
-			   item.animate({
+				item.css({
+					width: "200px";
+				}
+			  /*  item.animate({
 					width:"200px"
 				}, 2000,"linear", function(){
 					//alert("야호오");
-				});
+				}); */
 		
 		   });
 	});
 	
 </script>
+<style>
+	.item1{
+		width: 100px; 
+		height: 100px; 
+		background: yellow;
+		
+		/* transition-duration : 500ms; /*-차라리 ms 단위로 쓰기-*/
+		/*transition-property: width, opacity; 
+		transition-delay : 1s;
+		transition-timing-function : cubic-bezier(0.915, 0.415, 0.070, 0.620); */
+		
+		/* transition-duration:
+		transition-delay:
+		transition-property:
+		transition-timing-function: */
+		
+	}
+	
+	/* .item1:hover{
+		opacity : 0.2;
+		width: 200px; 
+		height : 200px;
+		/* transform : rotate(45deg); */
+	} */
+	
+</style>
 </head>
 <body>
+
    <div id="ex1-tool">
       <input type="button" value="너비늘리기">
    </div>
    <!--    1.너비를 변경하는 애니메이션 -->
    <div id="ex1-box" style="width: 500px; height: 300px; background: gray;">
-      <div class="item1" style="transform:rotate(45deg) ;width: 100px; height: 100px; background: yellow;"></div>
+      <div class="item1" >
+      </div>
    </div>
 </body>
 </html>
